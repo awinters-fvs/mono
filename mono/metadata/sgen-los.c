@@ -370,6 +370,7 @@ sgen_los_alloc_large_inner (MonoVTable *vtable, size_t size)
 		return NULL;
 	g_assert (!((mword)obj->data & (SGEN_ALLOC_ALIGN - 1)));
 	obj->size = size;
+	obj->cardtable_mod_union = NULL;
 	vtslot = (void**)obj->data;
 	*vtslot = vtable;
 	sgen_update_heap_boundaries ((mword)obj->data, (mword)obj->data + size);
